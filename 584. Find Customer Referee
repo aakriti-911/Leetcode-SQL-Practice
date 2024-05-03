@@ -55,4 +55,12 @@ SELECT name
 FROM Customer c
 WHERE referee_id != 2 OR referee_id IS NULL ;
 
+VS 
+
+SELECT name 
+FROM Customer c
+WHERE c.referee_id != 2 OR c.referee_id IS NULL ;
+
 # place Null at the end to see significant difference in runtime
+# add an alias, it improves runtime significantly like c.
+# dont put the query in one line, structure if to reduce runtime.
