@@ -48,3 +48,11 @@ solution :
 SELECT name 
 FROM Customer c
 WHERE referee_id IS NULL OR referee_id != 2;
+
+VS 
+
+SELECT name 
+FROM Customer c
+WHERE referee_id != 2 OR referee_id IS NULL ;
+
+# place Null at the end to see significant difference in runtime
