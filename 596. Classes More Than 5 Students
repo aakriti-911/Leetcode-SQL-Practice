@@ -51,11 +51,4 @@ Explanation:
 SELECT class
 FROM Courses
 GROUP BY class
-HAVING COUNT(class) = (
-    SELECT MAX(class_count)
-    FROM (
-        SELECT COUNT(class) AS class_count
-        FROM Courses
-        GROUP BY class
-    ) AS class_counts
-);
+HAVING COUNT(student) >= 5;
