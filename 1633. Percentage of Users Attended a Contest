@@ -75,15 +75,12 @@ Bob registered in contest 207 and the percentage is ((1/3) * 100) = 33.33%
 
 
 -- Write your PostgreSQL query statement below
-SELECT r.contest_id,
-    CASE WHEN COUNT(u.user_id) = 3
-        THEN 100.0
-        WHEN COUNT(u.user_id) = 2
-        THEN 66.67
-        ELSE 33.33
-        END AS percentage
-FROM Users u
-INNER JOIN Register r
-    ON u.user_id = r.user_id
+SELECT 
+r.contest_id,
+ROUND(COUNT(DISTINCT r.user_id)*100.0/(SELECT COUNT(*) FROM Users),2) AS percentage
+FROM 
+Register r
 GROUP BY r.contest_id
-ORDER BY percentage DESC,
+ORDER BY 
+    percentage DESC,
+    r.contest_id ASC
